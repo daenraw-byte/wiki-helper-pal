@@ -32,6 +32,12 @@ export function SiteHeader() {
             Categorías
           </a>
           <a
+            href="/categoria/personajes"
+            className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors"
+          >
+            Personajes
+          </a>
+          <a
             href="/#articulos"
             className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors"
           >
