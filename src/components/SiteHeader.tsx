@@ -16,12 +16,27 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7 text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-foreground transition-colors" activeOptions={{ exact: true }} activeProps={{ className: "text-foreground" }}>
+        <nav className="hidden md:flex items-center gap-2 text-sm">
+          <Link
+            to="/"
+            className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors"
+            activeOptions={{ exact: true }}
+            activeProps={{ className: "px-4 py-1.5 rounded-full bg-background border border-foreground/60 text-foreground shadow-sm transition-colors" }}
+          >
             Inicio
           </Link>
-          <a href="/#categorias" className="hover:text-foreground transition-colors">Categorías</a>
-          <a href="/#articulos" className="hover:text-foreground transition-colors">Artículos</a>
+          <a
+            href="/#categorias"
+            className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors"
+          >
+            Categorías
+          </a>
+          <a
+            href="/#articulos"
+            className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors"
+          >
+            Artículos
+          </a>
         </nav>
 
         <div className="flex items-center gap-3">
