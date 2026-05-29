@@ -31,6 +31,27 @@ export function SiteHeader() {
           >
             Categorías
           </a>
+          <div className="relative group">
+            <button
+              type="button"
+              className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors inline-flex items-center gap-1"
+            >
+              Mundo
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" className="opacity-60">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible focus-within:opacity-100 focus-within:visible transition-opacity z-50">
+              <div className="min-w-[180px] rounded-xl border border-border bg-background shadow-lg p-1.5">
+                <a
+                  href="/categoria/territorios"
+                  className="block px-3 py-2 rounded-lg text-sm text-foreground hover:bg-muted transition-colors"
+                >
+                  Territorios
+                </a>
+              </div>
+            </div>
+          </div>
           <a
             href="/categoria/personajes"
             className="px-4 py-1.5 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 shadow-sm transition-colors"
