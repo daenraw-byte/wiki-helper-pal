@@ -9,38 +9,153 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
+import { Route as AutorUsernameRouteImport } from './routes/autor.$username'
+import { Route as ArticuloSlugRouteImport } from './routes/articulo.$slug'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
+import { Route as AuthenticatedNuevoRouteImport } from './routes/_authenticated/nuevo'
+import { Route as AuthenticatedArticuloSlugEditarRouteImport } from './routes/_authenticated/articulo.$slug.editar'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
+  id: '/categoria/$slug',
+  path: '/categoria/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutorUsernameRoute = AutorUsernameRouteImport.update({
+  id: '/autor/$username',
+  path: '/autor/$username',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticuloSlugRoute = ArticuloSlugRouteImport.update({
+  id: '/articulo/$slug',
+  path: '/articulo/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedNuevoRoute = AuthenticatedNuevoRouteImport.update({
+  id: '/nuevo',
+  path: '/nuevo',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedArticuloSlugEditarRoute =
+  AuthenticatedArticuloSlugEditarRouteImport.update({
+    id: '/articulo/$slug/editar',
+    path: '/articulo/$slug/editar',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/nuevo': typeof AuthenticatedNuevoRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/articulo/$slug': typeof ArticuloSlugRoute
+  '/autor/$username': typeof AutorUsernameRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
+  '/articulo/$slug/editar': typeof AuthenticatedArticuloSlugEditarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/nuevo': typeof AuthenticatedNuevoRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/articulo/$slug': typeof ArticuloSlugRoute
+  '/autor/$username': typeof AutorUsernameRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
+  '/articulo/$slug/editar': typeof AuthenticatedArticuloSlugEditarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_authenticated/nuevo': typeof AuthenticatedNuevoRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
+  '/articulo/$slug': typeof ArticuloSlugRoute
+  '/autor/$username': typeof AutorUsernameRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
+  '/_authenticated/articulo/$slug/editar': typeof AuthenticatedArticuloSlugEditarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/nuevo'
+    | '/perfil'
+    | '/articulo/$slug'
+    | '/autor/$username'
+    | '/categoria/$slug'
+    | '/articulo/$slug/editar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/nuevo'
+    | '/perfil'
+    | '/articulo/$slug'
+    | '/autor/$username'
+    | '/categoria/$slug'
+    | '/articulo/$slug/editar'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login'
+    | '/_authenticated/nuevo'
+    | '/_authenticated/perfil'
+    | '/articulo/$slug'
+    | '/autor/$username'
+    | '/categoria/$slug'
+    | '/_authenticated/articulo/$slug/editar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  ArticuloSlugRoute: typeof ArticuloSlugRoute
+  AutorUsernameRoute: typeof AutorUsernameRoute
+  CategoriaSlugRoute: typeof CategoriaSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +163,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categoria/$slug': {
+      id: '/categoria/$slug'
+      path: '/categoria/$slug'
+      fullPath: '/categoria/$slug'
+      preLoaderRoute: typeof CategoriaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/autor/$username': {
+      id: '/autor/$username'
+      path: '/autor/$username'
+      fullPath: '/autor/$username'
+      preLoaderRoute: typeof AutorUsernameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/articulo/$slug': {
+      id: '/articulo/$slug'
+      path: '/articulo/$slug'
+      fullPath: '/articulo/$slug'
+      preLoaderRoute: typeof ArticuloSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/nuevo': {
+      id: '/_authenticated/nuevo'
+      path: '/nuevo'
+      fullPath: '/nuevo'
+      preLoaderRoute: typeof AuthenticatedNuevoRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/articulo/$slug/editar': {
+      id: '/_authenticated/articulo/$slug/editar'
+      path: '/articulo/$slug/editar'
+      fullPath: '/articulo/$slug/editar'
+      preLoaderRoute: typeof AuthenticatedArticuloSlugEditarRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedNuevoRoute: typeof AuthenticatedNuevoRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+  AuthenticatedArticuloSlugEditarRoute: typeof AuthenticatedArticuloSlugEditarRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedNuevoRoute: AuthenticatedNuevoRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
+  AuthenticatedArticuloSlugEditarRoute: AuthenticatedArticuloSlugEditarRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  LoginRoute: LoginRoute,
+  ArticuloSlugRoute: ArticuloSlugRoute,
+  AutorUsernameRoute: AutorUsernameRoute,
+  CategoriaSlugRoute: CategoriaSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
