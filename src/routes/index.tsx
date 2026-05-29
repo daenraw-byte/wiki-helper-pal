@@ -46,34 +46,32 @@ function HomePage() {
   });
 
   return (
-    <div>
+    <div className="mx-auto max-w-6xl px-4 md:px-6 py-10 space-y-10">
       {/* HERO */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32 grid md:grid-cols-12 gap-10 items-end">
-          <div className="md:col-span-8">
-            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-6">
-              Compendio del mundo · Edición abierta
-            </p>
-            <h1 className="font-display text-5xl md:text-7xl leading-[1.02] tracking-tight">
-              El mundo de <em className="italic text-accent">Aetheria</em>,
-              <br />contado por quienes lo viven.
-            </h1>
-            <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Cinco continentes flotantes, siete academias de magia elemental, una decena de
-              razas ancestrales. Una wiki que crece cada vez que un viajero se sienta a escribir.
-            </p>
-          </div>
-          <div className="md:col-span-4 md:text-right">
-            <p className="font-display text-sm text-muted-foreground">
-              «El mundo no se descubre. Se nombra.»
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">— Inscripción en la Torre de Vael</p>
-          </div>
+      <section className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 md:px-12 py-16 md:py-24 grid md:grid-cols-12 gap-10 items-end">
+        <div className="md:col-span-8">
+          <p className="text-xs uppercase tracking-[0.25em] text-accent mb-6">
+            Compendio del mundo · Edición abierta
+          </p>
+          <h1 className="font-display text-5xl md:text-7xl leading-[1.02] tracking-tight">
+            El mundo de <em className="italic text-accent">Aetheria</em>,
+            <br />contado por quienes lo viven.
+          </h1>
+          <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
+            Cinco continentes flotantes, siete academias de magia elemental, una decena de
+            razas ancestrales. Una wiki que crece cada vez que un viajero se sienta a escribir.
+          </p>
+        </div>
+        <div className="md:col-span-4 md:text-right">
+          <p className="font-display text-sm text-muted-foreground">
+            «El mundo no se descubre. Se nombra.»
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">— Inscripción en la Torre de Vael</p>
         </div>
       </section>
 
       {/* CATEGORÍAS */}
-      <section id="categorias" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="categorias" className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 md:px-12 py-14">
         <div className="flex items-baseline justify-between mb-10">
           <h2 className="font-display text-3xl">Categorías</h2>
           <p className="text-sm text-muted-foreground">Recorre el mundo por temas</p>
@@ -101,7 +99,7 @@ function HomePage() {
       </section>
 
       {/* ARTÍCULOS RECIENTES */}
-      <section id="articulos" className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="articulos" className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 md:px-12 py-14">
         <div className="flex items-baseline justify-between mb-10">
           <h2 className="font-display text-3xl">Entradas recientes</h2>
           <Link to="/nuevo" className="text-sm text-accent hover:underline inline-flex items-center gap-1">
