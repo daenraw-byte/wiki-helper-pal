@@ -41,62 +41,61 @@ function ArticlePage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 md:px-6 py-10">
-    <article className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 md:px-14 py-14">
-    <div className="mx-auto max-w-3xl">
-    <div className="mb-10">
-    <div hidden></div>
-        {(article as any).categories && (
-          <Link
-            to="/categoria/$slug"
-            params={{ slug: (article as any).categories.slug }}
-            className="text-xs uppercase tracking-[0.2em] text-accent hover:underline"
-          >
-            {(article as any).categories.name}
-          </Link>
-        )}
-        <h1 className="font-display text-4xl md:text-5xl mt-3 leading-[1.05]">{article.title}</h1>
-        {article.summary && (
-          <p className="font-display italic text-xl text-muted-foreground mt-4 leading-relaxed">
-            {article.summary}
-          </p>
-        )}
-        <div className="mt-8 flex items-center justify-between border-t border-b border-border py-4 text-sm text-muted-foreground">
-          <div>
-            {author ? (
-              <>
-                Escrito por{" "}
-                <Link
-                  to="/autor/$username"
-                  params={{ username: author.username }}
-                  className="text-foreground hover:text-accent"
-                >
-                  {author.display_name || author.username}
-                </Link>
-              </>
-            ) : (
-              "Autor desconocido"
-            )}
-            <span className="mx-2">·</span>
-            Actualizado el{" "}
-            {new Date(article.updated_at).toLocaleDateString("es", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </div>
-          {user && (
+      <article className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 md:px-14 py-14">
+        <div className="mb-10">
+          {(article as any).categories && (
             <Link
-              to="/articulo/$slug/editar"
-              params={{ slug: article.slug }}
-              className="inline-flex items-center gap-1.5 text-accent hover:underline"
+              to="/categoria/$slug"
+              params={{ slug: (article as any).categories.slug }}
+              className="text-xs uppercase tracking-[0.2em] text-accent hover:underline"
             >
-              <Pencil size={14} /> Editar
+              {(article as any).categories.name}
             </Link>
           )}
+          <h1 className="font-display text-4xl md:text-5xl mt-3 leading-[1.05]">{article.title}</h1>
+          {article.summary && (
+            <p className="font-display italic text-xl text-muted-foreground mt-4 leading-relaxed">
+              {article.summary}
+            </p>
+          )}
+          <div className="mt-8 flex items-center justify-between border-t border-b border-border py-4 text-sm text-muted-foreground">
+            <div>
+              {author ? (
+                <>
+                  Escrito por{" "}
+                  <Link
+                    to="/autor/$username"
+                    params={{ username: author.username }}
+                    className="text-foreground hover:text-accent"
+                  >
+                    {author.display_name || author.username}
+                  </Link>
+                </>
+              ) : (
+                "Autor desconocido"
+              )}
+              <span className="mx-2">·</span>
+              Actualizado el{" "}
+              {new Date(article.updated_at).toLocaleDateString("es", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </div>
+            {user && (
+              <Link
+                to="/articulo/$slug/editar"
+                params={{ slug: article.slug }}
+                className="inline-flex items-center gap-1.5 text-accent hover:underline"
+              >
+                <Pencil size={14} /> Editar
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="prose-wiki" dangerouslySetInnerHTML={{ __html: html }} />
-    </article>
+        <div className="prose-wiki" dangerouslySetInnerHTML={{ __html: html }} />
+      </article>
+    </div>
   );
 }
