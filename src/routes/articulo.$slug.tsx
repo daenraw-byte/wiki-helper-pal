@@ -40,8 +40,11 @@ function ArticlePage() {
   const author = (article as any).author;
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
-      <div className="mb-10">
+    <div className="mx-auto max-w-4xl px-4 md:px-6 py-10">
+    <article className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 md:px-14 py-14">
+    <div className="mx-auto max-w-3xl">
+    <div className="mb-10">
+    <div hidden></div>
         {(article as any).categories && (
           <Link
             to="/categoria/$slug"
