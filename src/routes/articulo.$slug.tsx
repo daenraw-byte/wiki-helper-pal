@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { marked } from "marked";
 import { supabase } from "@/integrations/supabase/client";
@@ -24,7 +24,6 @@ function ArticlePage() {
         .eq("slug", slug)
         .maybeSingle();
       if (error) throw error;
-      if (!data) throw notFound();
       return data;
     },
   });
@@ -32,7 +31,25 @@ function ArticlePage() {
   if (isLoading) {
     return <div className="mx-auto max-w-3xl px-6 py-24 text-muted-foreground">Cargando…</div>;
   }
-  if (!article) return null;
+  if (!article) {
+    return (
+      <div className="mx-auto max-w-3xl px-6 py-24">
+        <div className="rounded-3xl bg-card/95 backdrop-blur-sm shadow-xl border border-border/60 px-8 py-14 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Sin contenido</p>
+          <h1 className="font-display text-3xl mb-3">Este artículo aún no existe</h1>
+          <p className="text-muted-foreground">La entrada «{slug}» todavía no ha sido creada.</p>
+          {user && (
+            <Link
+              to="/nuevo"
+              className="inline-block mt-6 px-4 py-2 rounded-full border border-foreground/60 hover:bg-foreground hover:text-background transition"
+            >
+              Crear ahora
+            </Link>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const html = marked.parse(article.content || "*Esta entrada aún no tiene contenido.*", {
     breaks: true,
